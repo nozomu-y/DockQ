@@ -97,7 +97,7 @@ def capri_class_DockQ(DockQ,capri_peptide=False):
 
 def calc_DockQ(model,native,use_CA_only=False,capri_peptide=False):
     
-    exec_path=os.path.dirname(os.path.abspath(sys.argv[0]))    
+    exec_path=os.path.dirname(__file__)
     atom_for_sup=['CA','C','N','O']
     if(use_CA_only):
         atom_for_sup=['CA']
@@ -402,7 +402,7 @@ def make_two_chain_pdb(pdb,group1,group2): #renumber from 1
     io=Bio.PDB.PDBIO()
     io.set_structure(pdb_struct)
     io.save(outfile)
-    exec_path=os.path.dirname(os.path.abspath(sys.argv[0]))    
+    exec_path=os.path.dirname(__file__)
     cmd=exec_path + '/scripts/renumber_pdb.pl ' + outfile
     os.system(cmd)
     os.remove(outfile)
@@ -448,7 +448,7 @@ def make_two_chain_pdb_perm(pdb,group1,group2): #not yet ready
         f.write(change_chain(pdb_chains[c],"B"))
     f.close();
     #print outfile
-    exec_path=os.path.dirname(os.path.abspath(sys.argv[0]))    
+    exec_path=os.path.dirname(__file__)
     cmd=exec_path + '/scripts/renumber_pdb.pl ' + outfile
     os.system(cmd)
     os.remove(outfile)
@@ -492,7 +492,7 @@ def main():
 #    model=sys.argv[1]
 #    native=sys.argv[2]
 
-    exec_path=os.path.dirname(os.path.abspath(sys.argv[0]))
+    exec_path=os.path.dirname(__file__)
     fix_numbering=exec_path + '/scripts/fix_numbering.pl'
     model=args.model[0]
     model_in=model
