@@ -95,7 +95,7 @@ def capri_class_DockQ(DockQ,capri_peptide=False):
         return 'Undef'
 
 
-def calc_DockQ(model,native,use_CA_only=False,capri_peptide=False):
+def calc_DockQ(model,native,use_CA_only=False,capri_peptide=False,ligand_chain_name=None,receptor_chain_name=None):
     
     exec_path=os.path.dirname(__file__)
     atom_for_sup=['CA','C','N','O']
@@ -301,6 +301,17 @@ def calc_DockQ(model,native,use_CA_only=False,capri_peptide=False):
         class1='receptor'
         class2='ligand'
 
+    if ligand_chain_name != None and receptor_chain_name != None:
+        if chain1 == receptor_chain_name and chain2 == ligand_chain_name:
+            receptor_chain=chain1
+            ligand_chain=chain2
+            class1='receptor'
+            class2='ligand'
+        elif chain1 == ligand_chain_name and chain2 == receptor_chain_name:
+            receptor_chain=chain2
+            ligand_chain=chain1
+            class1='ligand'
+            class2='receptor'
 
 
     #print len1
